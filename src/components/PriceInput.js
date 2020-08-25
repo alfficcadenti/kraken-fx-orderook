@@ -4,14 +4,30 @@ import PropTypes from "prop-types";
 const PriceInput = ({price}) => {
 	const [value, setValue] = useState(price);
     
+	const check = (e) => {
+		var keyCode = e.keyCode ? e.keyCode : e.which;
+		if (keyCode === 110 && price) {
+			e.preventDefault();
+		}
+		if (keyCode > 47 && keyCode < 58) {
+			e.preventDefault();
+		}
+	};
+    
 	const onHandleChange = (e) => {
-		console.log(e, e.target.value);
-		let price = e.target.value;
-
-		if (!Number(price)) {
+		e.preventDefault();
+		console.log("test", e.target.value);
+		if (!e.target.value) {
+			setValue(0);
 			return;
 		}
-		setValue(value);
+		if (!Number(e.target.value)) {
+			if(!e.target.value) {
+				setValue(0);
+			}
+			return;
+		}
+		setValue(e.target.value);
 	};
 
 	return (
@@ -26,6 +42,7 @@ const PriceInput = ({price}) => {
 				type="number" 
 				value={value}
 				onChange = {onHandleChange}
+				onKeyUp={check}
 			/>
 		</div>
 	);
