@@ -5,6 +5,18 @@ const OrderBook = () => {
 	const [buy, setBuy] = useState([]);
 	const [sell, setSell] = useState([]);
 
+	const updatedOrderBook = (newOrderPrice, newOrderQuantity, book) => {
+		const idx = book.findIndex(x=>x.price === newOrderPrice);
+		if(idx === -1 &&  newOrderQuantity !== 0) {
+			return ([...book,{price: newOrderPrice, qty: newOrderQuantity}]);
+		} else {
+			newOrderQuantity !== 0 ? 
+				book[idx] = {price: newOrderPrice, qty: newOrderQuantity} : 
+				book.splice(idx, 1);
+			return book;
+		}
+	};
+
 	useEffect(() => {
 		const subscribe = {
 			event: "subscribe",
@@ -17,33 +29,13 @@ const OrderBook = () => {
 		};
 		ws.onmessage = (event) => {
 			const data = JSON.parse(event.data);
-			if (data && data.feed) {
+			if (data && data.feed === "book") {
 				if (data.side === "buy") {
-					const idx = buy.findIndex(x=>x.price === data.price);
-					if(idx === -1) {
-						setBuy([...buy,{price: data.price, qty: data.qty}]);
-					} else {
-						const newBuy = buy;
-						data.qty ? 
-							newBuy[idx] = {price: data.price, qty: data.qty} : 
-							newBuy.splice(idx, 1);
-						newBuy[idx] = {price: data.price, qty: data.qty};
-						setBuy(newBuy);
-					}
-
-					
-
+					const newBuyBook = updatedOrderBook(data.price, data.qty, buy);
+					setBuy(newBuyBook);
 				} else if (data.side === "sell") {
-					const idx = sell.findIndex(x=>x.price === data.price);
-					if(idx === -1) {
-						setSell([...sell,{price: data.price, qty: data.qty}]);
-					} else {
-						const newSell = sell;
-						data.qty ? 
-							newSell[idx] = {price: data.price, qty: data.qty} : 
-							newSell.splice(idx, 1);
-						setSell(newSell);
-					}
+					const newSellBook = updatedOrderBook(data.price, data.qty, sell);
+					setSell(newSellBook);
 				}
 			}
 		};
@@ -60,11 +52,11 @@ const OrderBook = () => {
 		if(side === "sell") {
 			return arr && arr
 				.sort((a, b) => (a.price - b.price))
-				.map((item, index) => (item.qty ? order(item, index, side) : ""));
+				.map((item, index) => (order(item, index, side)));
 		} else if (side === "buy") {
 			return arr && arr
 				.sort((a, b) => (b.price - a.price))
-				.map((item, index) => (item.qty ? order(item, index, side) : ""));
+				.map((item, index) => (order(item, index, side)));
 		}
 	};
 		
