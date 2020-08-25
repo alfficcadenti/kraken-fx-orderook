@@ -33,6 +33,9 @@ const OrderBook = () => {
 		};
 		ws.onmessage = (event) => {
 			const data = JSON.parse(event.data);
+			if(data && data.feed !== "book_snapshot" && data.feed !== "book") {
+				console.log(data);
+			}
 			if (data && data.feed === "book_snapshot") {
 				data.bids && setBuy(data.bids);
 				data.asks && setSell(data.asks);
@@ -53,6 +56,7 @@ const OrderBook = () => {
 		return () => {
 			ws.close();
 		};
+		// eslint-disable-next-line
 	});
 
 	const orderRows = (arr, side) => {
