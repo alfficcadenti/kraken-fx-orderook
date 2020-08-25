@@ -24,6 +24,9 @@ const OrderBook = () => {
 						setBuy([...buy,{price: data.price, qty: data.qty}]);
 					} else {
 						const newBuy = buy;
+						data.qty ? 
+							newBuy[idx] = {price: data.price, qty: data.qty} : 
+							newBuy.splice(idx, 1);
 						newBuy[idx] = {price: data.price, qty: data.qty};
 						setBuy(newBuy);
 					}
@@ -36,7 +39,9 @@ const OrderBook = () => {
 						setSell([...sell,{price: data.price, qty: data.qty}]);
 					} else {
 						const newSell = sell;
-						newSell[idx] = {price: data.price, qty: data.qty};
+						data.qty ? 
+							newSell[idx] = {price: data.price, qty: data.qty} : 
+							newSell.splice(idx, 1);
 						setSell(newSell);
 					}
 				}
@@ -55,11 +60,11 @@ const OrderBook = () => {
 		if(side === "sell") {
 			return arr && arr
 				.sort((a, b) => (a.price - b.price))
-				.map((item, index) => (order(item, index, side)));
+				.map((item, index) => (item.qty ? order(item, index, side) : ""));
 		} else if (side === "buy") {
 			return arr && arr
 				.sort((a, b) => (b.price - a.price))
-				.map((item, index) => (order(item, index, side)));
+				.map((item, index) => (item.qty ? order(item, index, side) : ""));
 		}
 	};
 		
