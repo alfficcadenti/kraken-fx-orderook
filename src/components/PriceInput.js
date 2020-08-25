@@ -1,12 +1,12 @@
-import React, {useState} from "react";
-import PropTypes from "prop-types";
+import React, { useContext } from "react";
+import {OrderBookContext} from "./OrderBookContext";
+//import PropTypes from "prop-types";
 
-const PriceInput = ({price}) => {
-	const [value, setValue] = useState(price);
-    
+const PriceInput = () => {
+	const [state, setState] = useContext(OrderBookContext);
 	const check = (e) => {
 		var keyCode = e.keyCode ? e.keyCode : e.which;
-		if (keyCode === 110 && price) {
+		if (keyCode !== 110) {
 			e.preventDefault();
 		}
 		if (keyCode > 47 && keyCode < 58) {
@@ -16,31 +16,21 @@ const PriceInput = ({price}) => {
     
 	const onHandleChange = (e) => {
 		e.preventDefault();
-		console.log("test", e.target.value);
-		if (!e.target.value) {
-			setValue(0);
-			return;
-		}
-		if (!Number(e.target.value)) {
-			if(!e.target.value) {
-				setValue(0);
-			}
-			return;
-		}
-		setValue(e.target.value);
+		const newPrice = Number(e.target.value) || 0;
+		setState((state) => ({ ...state, inputPrice: newPrice }));
 	};
 
 	return (
-		<div className="price-input">
+		<div className="price-input-container floating">
 			<label 
 				htmlFor="input" 
-				className="price-input-label">
+				className="floating__label">
                         Price
 			</label>
 			<input 
-				className="price-input" 
+				className="price-input floating__input" 
 				type="number" 
-				value={value}
+				value={state.inputPrice || 0}
 				onChange = {onHandleChange}
 				onKeyUp={check}
 			/>
@@ -48,8 +38,8 @@ const PriceInput = ({price}) => {
 	);
 };
 
-PriceInput.propTypes = {
-	price: PropTypes.oneOfType([PropTypes.number]),
-};
+// PriceInput.propTypes = {
+// 	price: PropTypes.number,
+// };
 
 export default PriceInput;

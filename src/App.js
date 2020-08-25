@@ -1,6 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { Fragment,useState, useEffect, useRef} from "react";
 import "./App.css";
+import {OrderBookProvider} from "./components/OrderBookContext";
 import OrderBook from "./components/OrderBook";
+import PriceInput from "./components/PriceInput";
 
 const App = () => {
 
@@ -57,7 +59,13 @@ const App = () => {
 
 	return (
 		<div>
-			{buy.length && sell.length ? <OrderBook buy={buy} sell={sell}/> : ""}
+			<OrderBookProvider>
+				{buy.length && sell.length ? 
+					<Fragment>
+						<PriceInput />
+						<OrderBook buy={buy} sell={sell}/>
+					</Fragment>: ""}
+			</OrderBookProvider>
 		</div>
 	);
 };

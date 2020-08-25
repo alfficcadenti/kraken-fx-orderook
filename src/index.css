@@ -1,8 +1,17 @@
+:root {
+  --font-family: Iosevka Custom, monospace;
+  --background-color: #2f2e4b;
+  --background-color-app: #545171;
+  --font-color: white;
+}
+
 body {
   margin: 0;
-  font-family: Iosevka Custom, monospace;
+  font-family: var(--font-family);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: var(--font-color);
+  background-color: var(--background-color-app);
 }
 
 code {
@@ -10,13 +19,18 @@ code {
     monospace;
 }
 
-.order-book {
-  width: 50%;
-}
-
 .order-container {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
   width: 50%;
+  background-color: var(--background-color);
+  align-items: center;
+  justify-content: center;
+  padding: 1em 1em 1em 1em;
+  border-radius: 4px;
 }
 
 table {
@@ -27,7 +41,7 @@ table {
 
 tbody {
   display: block;
-  height: 250px;
+  height: 300px;
   overflow: auto;
 }
 
@@ -53,12 +67,31 @@ th {
   padding: 6px;
 }
 
-tr:nth-child(even) {
-  background-color: #f2f2f2;
+td.order-price.sell {
+  color: red;
 }
 
-tr:hover {
-  background-color: #ddd;
+td.order-price.buy {
+  color: #3b9b4a;
+}
+
+td.order-price:hover {
+  font-weight: 900;
+}
+
+.price-input {
+  padding: 1em 1em 1em 1em;
+  border-radius: 4px;
+  background-color: var(--background-color);
+  font-family: var(--font__family);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--font-color);
+  -webkit-appearance: none;
+  border-width: 0px;
+  border: none;
+
 }
 
 /* Chrome, Safari, Edge, Opera */
@@ -70,4 +103,8 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+*:focus {
+  outline: none;
 }
