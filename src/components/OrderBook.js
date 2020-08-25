@@ -1,57 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
+import PriceInput from "./PriceInput";
+import PropTypes from "prop-types";
 
-
-const OrderBook = () => {
-	const ws = useRef(null);
-	const [buy, setBuy] = useState([]);
-	const [sell, setSell] = useState([]);
-
-	const updatedOrderBook = (newOrderPrice, newOrderQuantity, book) => {
-		const idx = book.findIndex(x=>x.price === newOrderPrice);
-		if(idx === -1 &&  newOrderQuantity !== 0) {
-			return ([...book,{price: newOrderPrice, qty: newOrderQuantity}]);
-		} else {
-			newOrderQuantity !== 0 ? 
-				book[idx] = {price: newOrderPrice, qty: newOrderQuantity} : 
-				book.splice(idx, 1);
-			return book;
-		}
-	};
-
-	useEffect(() => {
-		const subscribe = {
-			event: "subscribe",
-			feed: "book",
-			product_ids: ["PI_XBTUSD"]
-		};
-		ws.current = new WebSocket("wss://futures.kraken.com/ws/v1");
-		ws.current.onopen = () => {
-			ws.current.send(JSON.stringify(subscribe));
-		};
-		ws.current.onclose = () => console.log("ws closed");
-
-		return () => {
-			ws.current.close();
-		};
-	}, []);
-
-	useEffect(() => {
-		ws.current.onmessage = (event) => {
-			const data = JSON.parse(event.data);
-			if (data && data.feed === "book_snapshot") {
-				data.bids && setBuy(data.bids);
-				data.asks && setSell(data.asks);
-			} else if (data && data.feed === "book") {
-				if (data.side === "buy") {
-					const newBuyBook = updatedOrderBook(data.price, data.qty, buy);
-					setBuy(newBuyBook);
-				} else if (data.side === "sell") {
-					const newSellBook = updatedOrderBook(data.price, data.qty, sell);
-					setSell(newSellBook);
-				}
-			}
-		};
-	});
+const OrderBook = ({buy,sell}) => {
+	const [price, setPrice] = useState(0);
 
 	const orderRows = (arr, side) => {
 		if(side === "sell") {
@@ -86,19 +38,25 @@ const OrderBook = () => {
  
 	return (
 		<div className="order-book">
+			<PriceInput value={price} onclick={setPrice}/>
 			<div className="order-container">
 				<table>
 					{orderHead("buy")}
-					<tbody>{orderRows(buy, "buy")}</tbody>
+					<tbody>{buy.length ? orderRows(buy, "buy") : ""}</tbody>
 				</table>
 
 				<table>
 					{orderHead("sell")}
-					<tbody>{orderRows(sell, "sell")}</tbody>
+					<tbody>{sell.length ? orderRows(sell, "sell") : ""}</tbody>
 				</table>
 			</div>
 		</div>
 	);
+};
+
+OrderBook.propTypes = {
+	buy: PropTypes.array,
+	sell: PropTypes.array,
 };
 
 export default OrderBook;
