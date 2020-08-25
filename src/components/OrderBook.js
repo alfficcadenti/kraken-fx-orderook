@@ -1,7 +1,8 @@
-/* eslint-disable no-mixed-spaces-and-tabs */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+
 
 const OrderBook = () => {
+	const ws = useRef(null);
 	const [buy, setBuy] = useState([]);
 	const [sell, setSell] = useState([]);
 
@@ -17,25 +18,26 @@ const OrderBook = () => {
 		}
 	};
 
-	// const totalQuantity = (arr) => {
-
-	// }
-
 	useEffect(() => {
 		const subscribe = {
 			event: "subscribe",
 			feed: "book",
 			product_ids: ["PI_XBTUSD"]
 		};
-		const ws = new WebSocket("wss://futures.kraken.com/ws/v1");
-		ws.onopen = () => {
-			ws.send(JSON.stringify(subscribe));
+		ws.current = new WebSocket("wss://futures.kraken.com/ws/v1");
+		ws.current.onopen = () => {
+			ws.current.send(JSON.stringify(subscribe));
 		};
-		ws.onmessage = (event) => {
+		ws.current.onclose = () => console.log("ws closed");
+
+		return () => {
+			ws.current.close();
+		};
+	}, []);
+
+	useEffect(() => {
+		ws.current.onmessage = (event) => {
 			const data = JSON.parse(event.data);
-			if(data && data.feed !== "book_snapshot" && data.feed !== "book") {
-				console.log(data);
-			}
 			if (data && data.feed === "book_snapshot") {
 				data.bids && setBuy(data.bids);
 				data.asks && setSell(data.asks);
@@ -49,14 +51,6 @@ const OrderBook = () => {
 				}
 			}
 		};
-		ws.onclose = () => {
-			ws.close();
-		};
-
-		return () => {
-			ws.close();
-		};
-		// eslint-disable-next-line
 	});
 
 	const orderRows = (arr, side) => {
