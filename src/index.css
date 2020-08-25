@@ -36,18 +36,12 @@ tbody tr {
   display: table;
   width: 100%;
   table-layout: fixed;
-  /* even columns width , fix width of table too*/
 }
 
 thead {
-  width: calc(100% - 1em)
-    /* scrollbar is average 1em/16px width, remove it from thead width */
+  width: 100%;
+  /* width: calc(100% - 1em) */
 }
-
-table {
-  width: 400px;
-}
-
 
 h1,
 h2 {

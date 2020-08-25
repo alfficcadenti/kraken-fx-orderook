@@ -17,6 +17,10 @@ const OrderBook = () => {
 		}
 	};
 
+	// const totalQuantity = (arr) => {
+
+	// }
+
 	useEffect(() => {
 		const subscribe = {
 			event: "subscribe",
@@ -29,7 +33,10 @@ const OrderBook = () => {
 		};
 		ws.onmessage = (event) => {
 			const data = JSON.parse(event.data);
-			if (data && data.feed === "book") {
+			if (data && data.feed === "book_snapshot") {
+				data.bids && setBuy(data.bids);
+				data.asks && setSell(data.asks);
+			} else if (data && data.feed === "book") {
 				if (data.side === "buy") {
 					const newBuyBook = updatedOrderBook(data.price, data.qty, buy);
 					setBuy(newBuyBook);
@@ -46,7 +53,7 @@ const OrderBook = () => {
 		return () => {
 			ws.close();
 		};
-	}, [buy,sell]);
+	});
 
 	const orderRows = (arr, side) => {
 		if(side === "sell") {
