@@ -1,9 +1,9 @@
 import React, { useState, createContext } from "react";
 import PropTypes from "prop-types";
 
-const OrderBookContext = createContext([{}, () => {}]);
+export const OrderBookContext = createContext([{}, () => {}]);
 
-const OrderBookProvider = (props) => {
+export const OrderBookProvider = (props) => {
 	const [state, setState] = useState({});
 	return (
 		<OrderBookContext.Provider value={[state, setState]}>
@@ -13,7 +13,5 @@ const OrderBookProvider = (props) => {
 };
 
 OrderBookProvider.propTypes = { 
-	children: PropTypes.node.isRequired 
+	children: PropTypes.node.isRequired
 };
-
-export { OrderBookContext, OrderBookProvider };

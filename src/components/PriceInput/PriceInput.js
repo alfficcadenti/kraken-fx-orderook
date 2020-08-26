@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
-import {OrderBookContext} from "./OrderBookContext";
-//import PropTypes from "prop-types";
+import {OrderBookContext} from "../OrderBook/OrderBookContext";
 
 const PriceInput = () => {
 	const [state, setState] = useContext(OrderBookContext);
@@ -16,30 +15,22 @@ const PriceInput = () => {
     
 	const onHandleChange = (e) => {
 		e.preventDefault();
-		const newPrice = Number(e.target.value) || 0;
+		const newPrice = Number(e.target.value) || "";
 		setState((state) => ({ ...state, inputPrice: newPrice }));
 	};
 
 	return (
 		<div className="price-input-container floating">
-			<label 
-				htmlFor="input" 
-				className="floating__label">
-                        Price
-			</label>
 			<input 
 				className="price-input floating__input" 
 				type="number" 
-				value={state.inputPrice || 0}
+				value={Number(state.inputPrice) || ""}
 				onChange = {onHandleChange}
 				onKeyUp={check}
+				placeholder={"Price"}
 			/>
 		</div>
 	);
 };
-
-// PriceInput.propTypes = {
-// 	price: PropTypes.number,
-// };
 
 export default PriceInput;
