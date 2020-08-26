@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<OrderBook> matches the snapshot 1`] = `
+<div
+  className="order-container"
+>
+  <table>
+    <thead>
+      <tr>
+        <th>
+          Total
+        </th>
+        <th>
+          Q.ty
+        </th>
+        <th>
+          Price
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          10
+        </td>
+        <td>
+          10
+        </td>
+        <td
+          className="order-price buy"
+          onClick={[Function]}
+        >
+          10
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <table>
+    <thead>
+      <tr>
+        <th>
+          Price
+        </th>
+        <th>
+          Q.ty
+        </th>
+        <th>
+          Total
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td
+          className="order-price sell"
+          onClick={[Function]}
+        >
+          1
+        </td>
+        <td>
+          10
+        </td>
+        <td>
+          10
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;

@@ -20,6 +20,7 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin-top: 10px;
 }
 
 .order-container {
@@ -55,7 +56,6 @@ tbody tr {
 
 thead {
   width: 100%;
-  /* width: calc(100% - 1em) */
 }
 
 h1,
@@ -65,7 +65,7 @@ h2 {
 
 td,
 th {
-  padding: 6px;
+  padding: 3px;
 }
 
 td.order-price.sell {
@@ -80,34 +80,28 @@ td.order-price:hover {
   font-weight: 900;
 }
 
-.dropdown-input,
-.Dropdown-control {
-  padding: 1em 1em 1em 1em;
-  border-radius: 4px;
-  background-color: var(--background-color);
-  font-family: var(--font__family);
-  color: var(--font-color);
-  -webkit-appearance: none;
-  border-width: 0px;
-  border: solid 1px var(--border-color);
-  font-size: 1.2em;
-  text-align: center;
-  margin: 5px;
+.price-bar.buy {
+  background-color: #3b9b4a;
 }
 
-.price-input,
-.Dropdown-control {
-  min-height: 75px;
-  min-width: 75px;
-
+.price-bar.sell {
+  background-color: red;
 }
 
 .header-container {
   display: inline-flex;
 }
 
+.depth-level-dropwdown-container,
+.price-input-container {
+  margin: 5px;
+  position: relative;
+  min-width: 75px;
+}
+
 .price-input {
-  padding: 1em 1em 1em 1em;
+  width: 150px;
+  padding: .5em .5em .5em .5em;
   border-radius: 4px;
   background-color: var(--background-color);
   font-family: var(--font__family);
@@ -120,8 +114,6 @@ td.order-price:hover {
   border: solid 1px var(--border-color);
   font-size: 1.2em;
   text-align: center;
-  margin: 5px;
-  min-height: 35px;
 }
 
 /* Chrome, Safari, Edge, Opera */
@@ -135,112 +127,32 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
+.depth-level-dropwdown {
+  position: relative;
+  padding: .5em .5em .5em .5em;
+  border-radius: 4px;
+  background-color: var(--background-color);
+  font-family: var(--font__family);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--font-color);
+  -webkit-appearance: none;
+  border-width: 0px;
+  border: solid 1px var(--border-color);
+  font-size: 1.2em;
+  text-align: center;
+  min-width: 150px;
+}
+
+.depth-level-dropwdown select {
+  display: none;
+}
+
+select {
+  text-align-last: center;
+}
+
 *:focus {
   outline: none;
-}
-
-.Dropdown-root {
-  position: relative;
-  width: 100px;
-}
-
-.Dropdown-control {
-  position: relative;
-  overflow: hidden;
-  border: 1px solid #ccc;
-  border-radius: 2px;
-  box-sizing: border-box;
-  color: var(--font-color);
-  cursor: default;
-  outline: none;
-  padding: 8px 52px 8px 10px;
-  transition: all 200ms ease;
-  background-color: var(--background-color);
-
-}
-
-.Dropdown-control:hover {
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
-  background-color: var(--background-color);
-  color: var(--font-color);
-
-}
-
-.Dropdown-placeholder {
-  min-height: 50px;
-  background-color: var(--background-color);
-  color: var(--font-color);
-
-}
-
-.Dropdown-arrow {
-  border-color: #999 transparent transparent;
-  border-style: solid;
-  border-width: 5px 5px 0;
-  content: ' ';
-  display: block;
-  height: 0;
-  margin-top: -ceil(2.5);
-  position: absolute;
-  right: 10px;
-  top: 14px;
-  width: 0
-}
-
-.is-open .Dropdown-arrow {
-  border-color: transparent transparent #999;
-  border-width: 0 5px 5px;
-}
-
-.Dropdown-menu {
-  background-color: var(--background-color-app);
-  border: 1px solid #ccc;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
-  box-sizing: border-box;
-  margin-top: -1px;
-  max-height: 200px;
-  overflow-y: auto;
-  position: absolute;
-  top: 100%;
-  width: 100%;
-  z-index: 1000;
-  -webkit-overflow-scrolling: touch;
-}
-
-.Dropdown-menu .Dropdown-group>.Dropdown-title {
-  padding: 8px 10px;
-  color: var(--font-color);
-  font-weight: bold;
-  text-transform: capitalize;
-}
-
-.Dropdown-option {
-  box-sizing: border-box;
-  color: var(--font-color);
-  cursor: pointer;
-  display: block;
-  padding: 8px 10px;
-}
-
-.Dropdown-option:last-child {
-  border-bottom-right-radius: 2px;
-  border-bottom-left-radius: 2px;
-}
-
-.Dropdown-option:hover {
-  background-color: #f2f9fc;
-  color: var(--font-color-selected);
-}
-
-.Dropdown-option.is-selected {
-  background-color: var(--background-color);
-  color: var(--font-color);
-}
-
-.Dropdown-noresults {
-  box-sizing: border-box;
-  color: #ccc;
-  cursor: default;
-  display: block;
-  padding: 8px 10px;
 }

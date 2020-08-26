@@ -21,13 +21,13 @@ const PriceInput = () => {
 
 	return (
 		<div className="price-input-container floating">
+			<label>Price</label>
 			<input 
 				className="price-input floating__input" 
 				type="number" 
 				value={Number(state.inputPrice) || ""}
 				onChange = {onHandleChange}
 				onKeyUp={check}
-				placeholder={"Price"}
 			/>
 		</div>
 	);

@@ -1,6 +1,6 @@
 import React from "react";
 import {shallow} from "enzyme";
-import {DepthLevel} from "../DepthLevel";
+import DepthLevel from "../DepthLevel";
 import { OrderBookProvider } from "../../OrderBook/OrderBookContext";
 
 test("renders DepthLevel without crashing", () => {

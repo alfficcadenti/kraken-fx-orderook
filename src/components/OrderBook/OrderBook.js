@@ -1,7 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, Fragment } from "react";
 import PropTypes from "prop-types";
 import { OrderBookContext } from "./OrderBookContext";
 import OrderLevel from "./OrderLevel";
+import {generateArrayToDisplay} from "./utils";
 
 const OrderBook = ({buy,sell}) => {
 	// eslint-disable-next-line no-unused-vars
@@ -11,22 +12,17 @@ const OrderBook = ({buy,sell}) => {
 
 	const orderRows = (arr, side) => {
 		const depthLevel = state.depthLevel || 10;
-		if(side === "sell") {
-			return arr && arr.slice(0, depthLevel)
-				.sort((a, b) => (a.price - b.price))
-				.map((item, index) => (OrderLevel(item.price, item.qty, index, side, onPriceClick)));
-		} else if (side === "buy") {
-			return arr && arr.slice(0, depthLevel)
-				.sort((a, b) => (b.price - a.price))
-				.map((item, index) => (OrderLevel(item.price, item.qty, index, side, onPriceClick)));
-		}
+		const formattedBook = generateArrayToDisplay(arr, side, depthLevel);
+		return formattedBook.map((item, index) => (OrderLevel(item.price, item.qty, item.total, index, side, onPriceClick)));
 	};
 
 	const orderBookHead = (side) => (
 		<thead>
 			<tr>
-				<th>{side === "buy" ? "Total" : "Price"}</th>
-				<th>{side === "buy" ? "Price" : "Total"}</th>
+				{side === "buy" ? 
+					<Fragment><th>Total</th><th>Q.ty</th><th>Price</th></Fragment> :
+					<Fragment><th>Price</th><th>Q.ty</th><th>Total</th></Fragment>
+				}
 			</tr>
 		</thead>
 	);
