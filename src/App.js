@@ -1,8 +1,9 @@
 import React, { Fragment,useState, useEffect, useRef} from "react";
 import "./App.css";
-import {OrderBookProvider} from "./components/OrderBook/OrderBookContext";
+import { OrderBookProvider } from "./components/OrderBook/OrderBookContext";
 import OrderBook from "./components/OrderBook/OrderBook";
 import PriceInput from "./components/PriceInput/PriceInput";
+import DepthLevel from "./components/DepthLevel/DepthLevel";
 
 const App = () => {
 
@@ -62,7 +63,10 @@ const App = () => {
 			<OrderBookProvider>
 				{buy.length && sell.length ? 
 					<Fragment>
-						<PriceInput />
+						<div className="header-container">
+							<PriceInput />
+							<DepthLevel/>
+						</div>
 						<OrderBook buy={buy} sell={sell}/>
 					</Fragment>: ""}
 			</OrderBookProvider>

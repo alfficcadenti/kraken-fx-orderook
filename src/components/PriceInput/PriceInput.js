@@ -4,7 +4,7 @@ import {OrderBookContext} from "../OrderBook/OrderBookContext";
 const PriceInput = () => {
 	const [state, setState] = useContext(OrderBookContext);
 	const check = (e) => {
-		var keyCode = e.keyCode ? e.keyCode : e.which;
+		const keyCode = e.keyCode ? e.keyCode : e.which;
 		if (keyCode !== 110) {
 			e.preventDefault();
 		}
