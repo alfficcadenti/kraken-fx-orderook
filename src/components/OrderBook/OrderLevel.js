@@ -1,12 +1,16 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types"; 
 
-const quantityTDs = (total,qty, type) => type === "buy" ? <Fragment><td>{total}</td><td>{qty}</td></Fragment> : <Fragment><td>{qty}</td><td>{total}</td></Fragment>;
+const quantityTDs = (total,qty, type) => 
+	type === "buy" ? 
+		<Fragment><td>{total}</td><td>{qty}</td></Fragment> : 
+		<Fragment><td>{qty}</td><td>{total}</td></Fragment>;
+
 const priceTD = (price, type, onPriceClick) => <td className={`order-price ${type}`} onClick={()=>onPriceClick(price)}>{price}</td>;
 
 const OrderLevel = (price, qty, total, idx, type, onPriceClick) => (
 	<tr key={idx}>
-		{type === "buy" ? quantityTDs(total, qty) : priceTD(price, type, onPriceClick)} 
+		{type === "buy" ? quantityTDs(total, qty, type) : priceTD(price, type, onPriceClick)} 
 		{type === "buy" ? priceTD(price, type, onPriceClick) : quantityTDs(total, qty, type)}
 	</tr>
 );

@@ -11,6 +11,7 @@ const App = () => {
 	const ws = useRef(null);
 	const [buy, setBuy] = useState([]);
 	const [sell, setSell] = useState([]);
+	const [interval, setInterval] = useState();
 
 	useEffect(() => {
 		const subscribe = {
@@ -20,6 +21,7 @@ const App = () => {
 		};
 		ws.current = new WebSocket("wss://futures.kraken.com/ws/v1");
 		ws.current.onopen = () => {
+			console.log("ws opened");
 			ws.current.send(JSON.stringify(subscribe));
 		};
 		ws.current.onclose = () => console.log("ws closed");
@@ -27,7 +29,7 @@ const App = () => {
 		return () => {
 			ws.current.close();
 		};
-	}, []);
+	}, [interval]);
 
 	useEffect(() => {
 		ws.current.onmessage = (event) => {
@@ -46,6 +48,11 @@ const App = () => {
 			}
 		};
 	});
+
+	useEffect(() => {
+		const timer = setTimeout(() => setInterval(Date.now()), 10000);
+		return () => clearTimeout(timer);
+	}, [interval]);
 
 	return (
 		<div className="app-container">
