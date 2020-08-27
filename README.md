@@ -2,6 +2,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 It displays the order book in real-time for the pair XBTUSD showing the Price, Quantity and calculates the cumulative quantity for each price.<br /><br />
 From the Depth Level dropdown the user can select a how many level in the book wants to display.<br /><br />
 
+Live on Heroku: https://kraken-orderbook.herokuapp.com/
+
 ## Install
 
 Clone repo, then cd into the directory, then `npm install`.<br />

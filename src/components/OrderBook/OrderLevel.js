@@ -6,10 +6,10 @@ const quantityTDs = (total,qty, type) =>
 		<Fragment><td>{total}</td><td>{qty}</td></Fragment> : 
 		<Fragment><td>{qty}</td><td>{total}</td></Fragment>;
 
-const priceTD = (price, type, onPriceClick) => <td className={`order-price ${type}`} onClick={()=>onPriceClick(price)}>{price}</td>;
+const priceTD = (price, type) => <td className={`order-price ${type}`}>{price}</td>;
 
 const OrderLevel = (price, qty, total, idx, type, onPriceClick) => (
-	<tr key={idx}>
+	<tr key={idx} onClick={()=>onPriceClick(price)}>
 		{type === "buy" ? quantityTDs(total, qty, type) : priceTD(price, type, onPriceClick)} 
 		{type === "buy" ? priceTD(price, type, onPriceClick) : quantityTDs(total, qty, type)}
 	</tr>
