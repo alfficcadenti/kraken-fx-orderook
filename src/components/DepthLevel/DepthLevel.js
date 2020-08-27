@@ -5,7 +5,7 @@ const DepthLevel = () => {
 	const [state, setState] = useContext(OrderBookContext);
 
 	const options = [
-		1, 5, 10, 30, 50
+		1, 5, 10, 25, 50
 	];
 	const DEFAULT_OPTION = 10;
 	const onDepthChange = (e) => {

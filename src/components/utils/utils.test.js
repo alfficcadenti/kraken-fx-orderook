@@ -1,5 +1,5 @@
-import {sortOrderBookData, generateArrayToDisplay} from "../utils";
-import {mockRawBookData} from "./mockData";
+import {sortOrderBookData, generateArrayToDisplay, updatedOrderBook} from "./utils";
+import {mockRawBookData} from "../OrderBook/tests/mockData";
 
 const unsortedBook = [
 	{
@@ -61,5 +61,25 @@ describe("generateArrayToDisplay()", () => {
 		expect(generateArrayToDisplay(mockRawBookData,"sell",1)).toEqual([{"price": 2, "qty": 10, "total":10}]);
 		expect(generateArrayToDisplay(mockRawBookData,"sell",2)).toEqual([{"price": 2, "qty": 10, "total":10}, {"price": 12, "qty": 300, "total":310}]);
 
+	});
+});
+
+describe("updatedOrderBook()", () => {
+	test("returns replace the qty for a price already in the book", () => {
+		expect(updatedOrderBook(15,10,unsortedBook)).toEqual([{"price": 15, "qty": 10}, {"price": 13, "qty": 300}, {"price": 0, "qty": 10}]);
+	});
+
+	test("adds the new price and qty to the book", () => {
+		const oldBook = [
+			{
+				price: 12,
+				qty: 4
+			},
+			{
+				price: 3,
+				qty: 30
+			},
+		];
+		expect(updatedOrderBook(16,1,oldBook).length).toEqual(3);
 	});
 });

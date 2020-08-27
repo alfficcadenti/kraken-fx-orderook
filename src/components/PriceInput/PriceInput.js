@@ -21,8 +21,9 @@ const PriceInput = () => {
 
 	return (
 		<div className="price-input-container floating">
-			<label>Price</label>
+			<label htmlFor='price-input'>Price</label>
 			<input 
+				id='price-input'
 				className="price-input floating__input" 
 				type="number" 
 				value={Number(state.inputPrice) || ""}

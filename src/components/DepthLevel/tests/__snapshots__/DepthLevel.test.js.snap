@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<DepthLevel> matches the snapshot 1`] = `
+<div
+  className="depth-level-dropwdown-container"
+>
+  <label>
+    Depth Level
+  </label>
+  <select
+    className="depth-level-dropwdown"
+    onChange={[Function]}
+  >
+    <option
+      className="depth-level-option"
+      value={1}
+    >
+      1
+    </option>
+    <option
+      className="depth-level-option"
+      value={5}
+    >
+      5
+    </option>
+    <option
+      className="depth-level-option"
+      selected={true}
+      value={10}
+    >
+      10
+    </option>
+    <option
+      className="depth-level-option"
+      value={25}
+    >
+      25
+    </option>
+    <option
+      className="depth-level-option"
+      value={50}
+    >
+      50
+    </option>
+  </select>
+</div>
+`;

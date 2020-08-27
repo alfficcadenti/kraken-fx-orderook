@@ -4,11 +4,14 @@ exports[`<PriceInput> matches the snapshot 1`] = `
 <div
   className="price-input-container floating"
 >
-  <label>
+  <label
+    htmlFor="price-input"
+  >
     Price
   </label>
   <input
     className="price-input floating__input"
+    id="price-input"
     onChange={[Function]}
     onKeyUp={[Function]}
     type="number"

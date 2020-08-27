@@ -4,24 +4,13 @@ import { OrderBookProvider } from "./components/OrderBook/OrderBookContext";
 import OrderBook from "./components/OrderBook/OrderBook";
 import PriceInput from "./components/PriceInput/PriceInput";
 import DepthLevel from "./components/DepthLevel/DepthLevel";
+import {updatedOrderBook} from "./components/utils/utils";
 
 const App = () => {
 
 	const ws = useRef(null);
 	const [buy, setBuy] = useState([]);
 	const [sell, setSell] = useState([]);
-
-	const updatedOrderBook = (newOrderPrice, newOrderQuantity, book) => {
-		const idx = book.findIndex(x=>x.price === newOrderPrice);
-		if(idx === -1 &&  newOrderQuantity !== 0) {
-			return ([...book,{price: newOrderPrice, qty: newOrderQuantity}]);
-		} else {
-			newOrderQuantity !== 0 ? 
-				book[idx] = {price: newOrderPrice, qty: newOrderQuantity} : 
-				book.splice(idx, 1);
-			return book;
-		}
-	};
 
 	useEffect(() => {
 		const subscribe = {

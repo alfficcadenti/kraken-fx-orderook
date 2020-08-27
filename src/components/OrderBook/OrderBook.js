@@ -2,7 +2,7 @@ import React, { useContext, Fragment } from "react";
 import PropTypes from "prop-types";
 import { OrderBookContext } from "./OrderBookContext";
 import OrderLevel from "./OrderLevel";
-import {generateArrayToDisplay} from "./utils";
+import {generateArrayToDisplay} from "../utils/utils";
 
 const OrderBook = ({buy,sell}) => {
 	// eslint-disable-next-line no-unused-vars

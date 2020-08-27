@@ -21,3 +21,15 @@ export const sortOrderBookData = (arr = [], side = "") => {
 	}
 	return arr;
 };
+
+export const updatedOrderBook = (newOrderPrice, newOrderQuantity, book) => {
+	const idx = book.findIndex(x=>x.price === newOrderPrice);
+	if(idx === -1 &&  newOrderQuantity !== 0) {
+		return ([...book,{price: newOrderPrice, qty: newOrderQuantity}]);
+	} else {
+		newOrderQuantity !== 0 ? 
+			book[idx] = {price: newOrderPrice, qty: newOrderQuantity} : 
+			book.splice(idx, 1);
+		return book;
+	}
+};

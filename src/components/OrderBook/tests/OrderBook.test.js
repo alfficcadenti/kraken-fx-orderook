@@ -11,7 +11,8 @@ const sell = [{price:1, qty: 10}];
 
 describe("<OrderBook>", () => {
 	test("renders OrderBook without crashing", () => {
-		jest.spyOn(React, "useContext").mockImplementation((context) => "context_value" );
+		// eslint-disable-next-line no-unused-vars
+		jest.spyOn(React, "useContext").mockImplementation((_context) => "context_value" );
 		shallow(<OrderBookProvider><OrderBook buy={buy} sell={sell}/></OrderBookProvider>);
 	});
 	
