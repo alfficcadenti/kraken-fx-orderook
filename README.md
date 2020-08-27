@@ -9,6 +9,9 @@ Clone repo, then cd into the directory, then `npm install` and `npm start` to ru
 ### `npm start`
 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+In case you face CORS error, you can use a CORS removal extension for Chrome or if you are on Mac you can open Chrome with the command:
+`open -n -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args --user-data-dir="/tmp/chrome_dev_test" --disable-web-security`
+(BEAR IN MIND THIS WILL REDUCE SECURITY)
 
 ### `npm test`
 
@@ -18,9 +21,9 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 ### `npm run build`
 
 Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+It correctly bundles React in production mode and optimizes the build for the best performance.<br /><br />
 
-### Code
+## Code
 
 The websocket connection is establish in `App.js` and subscribe for the public order book data for the pair XBT USD (`feed: "book", product_ids: ["PI_XBTUSD"]`).
 On connection, the first api message is the book snapshot `book_snapshot` and the following are all the order book updates with price and qty information. When qty is zero, the price can be removed from the book.<br />
