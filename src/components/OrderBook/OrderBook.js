@@ -13,7 +13,16 @@ const OrderBook = ({buy,sell}) => {
 	const orderRows = (arr, side) => {
 		const depthLevel = state.depthLevel || 10;
 		const formattedBook = generateArrayToDisplay(arr, side, depthLevel);
-		return formattedBook.map((item, index) => (OrderLevel(item.price, item.qty, item.total, index, side, onPriceClick)));
+		return formattedBook && Array.isArray(formattedBook) && formattedBook
+			.map((item, index) => (
+				OrderLevel(
+					item.price, 
+					item.qty, 
+					item.total, 
+					index, 
+					side, 
+					onPriceClick
+				)));
 	};
 
 	const orderBookHead = (side) => (

@@ -5,9 +5,9 @@ export const generateArrayToDisplay = (arr, side, depthLevel) => {
 	return sortedArray && sortedArray.slice(0,depthLevel)
 		.map((x,idx)=>(
 			{
-				price: x.price, 
-				qty: x.qty, 
-				total: sortedArray.slice(0,idx+1).reduce(volumeAccumulator,0)
+				price: x.price || 0, 
+				qty: x.qty || 0, 
+				total: sortedArray.slice(0,idx+1).reduce(volumeAccumulator,0) || 0
 			}
 		));
 };

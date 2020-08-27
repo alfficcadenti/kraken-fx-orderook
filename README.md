@@ -28,9 +28,9 @@ It correctly bundles React in production mode and optimizes the build for the be
 The websocket connection is establish in `App.js` and subscribe for the public order book data for the pair XBT USD (`feed: "book", product_ids: ["PI_XBTUSD"]`).
 On connection, the first api message is the book snapshot `book_snapshot` and the following are all the order book updates with price and qty information. When qty is zero, the price can be removed from the book.<br />
 
-Although is a small app and I could have used simply the component props for interacts with component, but I decided to use the react Context for the state management having app scalability in mind.
+Although is a small app and I could have used simply the component props for interacts with component, but I decided to use the react Context for the state management having app scalability in mind.<br />
 
-The components are all functional components with react hooks instead of Class components in order to improve the performance and code readibility
+The components are all functional components with react hooks instead of Class components in order to improve the performance and code readability.<br />
 
 UI and code are split in 3 main components:
 
