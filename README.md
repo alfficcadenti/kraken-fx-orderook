@@ -1,5 +1,8 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and connect to the Kraken FX websocket API XBTUSD order book.<br />
-Kraken docs for more information on the API [https://www.kraken.com/features/websocket-api](https://www.kraken.com/features/websocket-api).<br />
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and connect to the [Kraken FX websocket API](https://www.kraken.com/features/websocket-api).<br /><br />
+It displays the order book in real-time for the pair XBTUSD showing the Price, Quantity and calculates the cumulative quantity for each price.<br /><br />
+From the Depth Level dropdown the user can select a how many level in the book wants to display.<br /><br />
+
+
 
 ## Install
 
