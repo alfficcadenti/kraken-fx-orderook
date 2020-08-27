@@ -9,8 +9,8 @@ Clone repo, then cd into the directory, then `npm install` and `npm start` to ru
 ### `npm start`
 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-In case you face CORS error, you can use a CORS removal extension for Chrome or if you are on Mac you can open Chrome with the command:
-`open -n -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args --user-data-dir="/tmp/chrome_dev_test" --disable-web-security`
+In case you face CORS error, you can use a CORS removal extension for Chrome or if you are on Mac you can open Chrome with the command:<br />
+`open -n -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args --user-data-dir="/tmp/chrome_dev_test" --disable-web-security`<br />
 (BEAR IN MIND THIS WILL REDUCE SECURITY)
 
 ### `npm test`
