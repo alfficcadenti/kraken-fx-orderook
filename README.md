@@ -1,16 +1,13 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and connect to the Kraken FX websocket API XBTUSD order book.<br />
+Kraken docs for more information on the API [https://www.kraken.com/features/websocket-api](https://www.kraken.com/features/websocket-api).<br />
 
-## Available Scripts
+## Install
 
-In the project directory, you can run:
+Clone repo, then cd into the directory, then `npm install` and `npm start` to run the app in the development mode.<br />
 
 ### `npm start`
 
-Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
 
 ### `npm test`
 
@@ -21,8 +18,3 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 
 Builds the app for production to the `build` folder.<br />
 It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
