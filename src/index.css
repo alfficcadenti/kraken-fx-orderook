@@ -27,7 +27,6 @@ body {
 
 @media only screen and (max-width: 840px) {
   body {
-    background-color: lightblue;
     font-size: 50%;
   }
 

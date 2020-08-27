@@ -4,24 +4,27 @@ From the Depth Level dropdown the user can select a how many level in the book w
 
 ## Install
 
-Clone repo, then cd into the directory, then `npm install` and `npm start` to run the app in the development mode.<br />
+Clone repo, then cd into the directory, then `npm install`.<br />
 
-### `npm start`
+### `npm run dev`
 
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Run `npm run dev` to launch the app in the development mode.
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.<br /><br />
+
 In case you face CORS error, you can use a CORS removal extension for Chrome or if you are on Mac you can open Chrome with the command:<br />
-`open -n -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args --user-data-dir="/tmp/chrome_dev_test" --disable-web-security`<br />
-(BEAR IN MIND THIS WILL REDUCE SECURITY)
+`open -n -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args --user-data-dir="/tmp/chrome_dev_test" --disable-web-security`<br /><br />
+(BEAR IN MIND THIS WILL REDUCE SECURITY)<br /><br />
+
+### `npm run build` `npm start`
+
+Builds the app for production to the `build` folder.<br />
+It correctly bundles React in production mode and optimizes the build for the best performance.<br />
+Afterwards run `npm start` to launch in Prod mode.<br /><br />
 
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.<br />
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.<br /><br />
 
 ## Code
 
