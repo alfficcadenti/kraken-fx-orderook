@@ -5,6 +5,8 @@
   --font-color: white;
   --font-color-selected: #333;
   --border-color: #cfcbf0;
+  --green: #6ec877;
+  --red: #e2444d;
 }
 
 body {
@@ -24,6 +26,7 @@ body {
 }
 
 .order-container {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   display: flex;
   width: 50%;
   background-color: var(--background-color);
@@ -56,6 +59,8 @@ tbody tr {
 
 thead {
   width: 100%;
+  margin-bottom: 5px;
+  font-size: 120%;
 }
 
 h1,
@@ -69,11 +74,11 @@ th {
 }
 
 td.order-price.sell {
-  color: red;
+  color: var(--red);
 }
 
 td.order-price.buy {
-  color: #3b9b4a;
+  color: var(--green);
 }
 
 td.order-price:hover {
@@ -81,11 +86,12 @@ td.order-price:hover {
 }
 
 .price-bar.buy {
-  background-color: #3b9b4a;
+  background-color: var(--green);
 }
 
 .price-bar.sell {
-  background-color: red;
+  background-color: var(--red);
+  ;
 }
 
 .header-container {
@@ -100,6 +106,7 @@ td.order-price:hover {
 }
 
 .price-input {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   width: 150px;
   padding: .5em .5em .5em .5em;
   border-radius: 4px;
@@ -128,6 +135,8 @@ input[type="number"] {
 }
 
 .depth-level-dropwdown {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+
   position: relative;
   padding: .5em .5em .5em .5em;
   border-radius: 4px;
